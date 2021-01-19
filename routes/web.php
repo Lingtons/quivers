@@ -12,5 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.welcome');
 });
+
+Auth::routes();
+
+//user routes
+Route::group(['namespace' => 'User', 'prefix' => 'user', 'middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+});
+
+
+
