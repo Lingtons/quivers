@@ -15,6 +15,7 @@ class CreateFamiliesTable extends Migration
     {
         Schema::create('families', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('family_name')->unique();
             $table->string('phone');
             $table->string('phone_alt')->nullable();
@@ -26,6 +27,7 @@ class CreateFamiliesTable extends Migration
             $table->text('image_url_alt')->nullable();
             $table->string('preferred_check_code')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

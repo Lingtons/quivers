@@ -22,5 +22,12 @@ Route::group(['namespace' => 'User', 'prefix' => 'user', 'middleware' => 'auth']
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
+Route::group(['namespace' => 'Manage', 'prefix' => 'manage', 'middleware' => 'auth'], function () {
+    Route::resource('/check-number', 'CheckNumberController')->name('*','manage.check_number');
+    Route::resource('/children', 'ChildrenController')->name('*','manage.children');
+    Route::resource('/family', 'FamilyController')->name('*','manage.family');
+    Route::resource('/user', 'UserController')->name('*','manage.user');
+});
+
 
 
