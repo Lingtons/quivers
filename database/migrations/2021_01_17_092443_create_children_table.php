@@ -15,7 +15,7 @@ class CreateChildrenTable extends Migration
     {
         Schema::create('children', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('family_id');
             $table->string('name');
             $table->string('gender');
             $table->text('image_url');
@@ -24,7 +24,7 @@ class CreateChildrenTable extends Migration
             $table->date('dob');
             $table->timestamps();
 
-            $table->foreign('parent_id')->references('id')->on('parents');
+            $table->foreign('family_id')->references('id')->on('families');
         });
     }
 
