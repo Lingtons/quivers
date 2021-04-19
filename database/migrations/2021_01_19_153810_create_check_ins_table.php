@@ -17,14 +17,14 @@ class CreateCheckInsTable extends Migration
             $table->bigIncrements('id');
             $table->string('service_date');
             $table->string('service_type');
-            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('family_id');
             $table->string('checkin_code');
             $table->dateTime('checkin_time');
             $table->dateTime('checkout_time')->nullable();
             $table->string('status');
             $table->timestamps();
 
-            $table->foreign('parent_id')->references('id')->on('parents');
+            $table->foreign('family_id')->references('id')->on('families');
         });
     }
 
