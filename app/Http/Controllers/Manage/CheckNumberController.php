@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Manage;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CheckNumber;
 
 class CheckNumberController extends Controller
 {
@@ -14,7 +15,8 @@ class CheckNumberController extends Controller
      */
     public function index()
     {
-        return view('manage.check_number.index');
+        $allcards = CheckNumber::all();
+        return view('manage.check_number.index', compact('allcards'));
     }
 
     /**
@@ -25,6 +27,7 @@ class CheckNumberController extends Controller
     public function create()
     {
         //
+        return view('manage.check_number.edit');
     }
 
     /**
@@ -36,6 +39,10 @@ class CheckNumberController extends Controller
     public function store(Request $request)
     {
         //
+        //
+        CheckNumber::create($request->all());
+
+        return "saved";
     }
 
     /**
@@ -47,6 +54,9 @@ class CheckNumberController extends Controller
     public function show($id)
     {
         //
+        $card = CheckNumber::find($id);
+
+        return view('manage.check_number.single', compact('card'));
     }
 
     /**
@@ -58,6 +68,9 @@ class CheckNumberController extends Controller
     public function edit($id)
     {
         //
+        $card = CheckNumber::find($id);
+
+        return view('manage.check_number.edit', compact('card'));
     }
 
     /**
@@ -70,6 +83,10 @@ class CheckNumberController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $card = CheckNumber::find($id);
+        $card->update($request->all());
+        
+        return redirect()->route('manage.check_number.index');
     }
 
     /**
@@ -81,5 +98,11 @@ class CheckNumberController extends Controller
     public function destroy($id)
     {
         //
+        CheckNumber::delete($id);
+
+        $card = CheckNumber::find($id);
+
+        $card->delete();
+        return redirect()->route('manage.check_number.index');
     }
 }
