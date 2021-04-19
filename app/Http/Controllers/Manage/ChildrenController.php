@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Manage;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Child;
 use Illuminate\View\View;
 
 class ChildrenController extends Controller
@@ -15,7 +16,9 @@ class ChildrenController extends Controller
      */
     public function index()
     {
-        return view('manage.children.index');
+        $children = Child::all();
+
+        return view('manage.children.index', compact('children'));
     }
 
     /**
@@ -26,6 +29,7 @@ class ChildrenController extends Controller
     public function create()
     {
         //
+        return view('manage.children.index', compact('children'));
     }
 
     /**
@@ -37,6 +41,9 @@ class ChildrenController extends Controller
     public function store(Request $request)
     {
         //
+        Child::create($request->all());
+
+        return "saved";
     }
 
     /**
@@ -48,6 +55,10 @@ class ChildrenController extends Controller
     public function show($id)
     {
         //
+        $child = Child::find($id);
+
+        return view('manage.children.single', compact('child'));
+
     }
 
     /**
@@ -59,6 +70,10 @@ class ChildrenController extends Controller
     public function edit($id)
     {
         //
+        $child = Child::find($id);
+
+        return view('manage.children.edit', compact('child'));
+
     }
 
     /**
@@ -71,6 +86,10 @@ class ChildrenController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $child = Child::find($id);
+        $child->update($request->all());
+        
+        return redirect()->route('manage.children.index');
     }
 
     /**
@@ -82,5 +101,11 @@ class ChildrenController extends Controller
     public function destroy($id)
     {
         //
+        Child::delete($id);
+
+        $child = Child::find($id);
+
+        $child->delete();
+        return redirect()->route('manage.children.index');
     }
 }
