@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Manage;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Family;
+use Illuminate\View\View;
 
 class FamilyController extends Controller
 {
@@ -14,7 +16,10 @@ class FamilyController extends Controller
      */
     public function index()
     {
-        return view('manage.family.index');
+        $families = Family::all();
+
+        return view('manage.family.index', compact('families'));
+        // return view('manage.family.index');
     }
 
     /**
@@ -25,6 +30,9 @@ class FamilyController extends Controller
     public function create()
     {
         //
+        $families = Family::all();
+
+        return view('manage.family.index');
     }
 
     /**
@@ -36,6 +44,9 @@ class FamilyController extends Controller
     public function store(Request $request)
     {
         //
+        Family::create($request->all());
+
+        return "saved";
     }
 
     /**
@@ -47,6 +58,9 @@ class FamilyController extends Controller
     public function show($id)
     {
         //
+        $family = Family::find($id);
+
+        return view('manage.family.single', compact('family'));
     }
 
     /**
@@ -58,6 +72,9 @@ class FamilyController extends Controller
     public function edit($id)
     {
         //
+        $family = Family::find($id);
+
+        return view('manage.family.edit', compact('family'));
     }
 
     /**
@@ -70,6 +87,10 @@ class FamilyController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $family = Family::find($id);
+        $family->update($request->all());
+        
+        return redirect()->route('manage.family.index');
     }
 
     /**
@@ -81,5 +102,11 @@ class FamilyController extends Controller
     public function destroy($id)
     {
         //
+        // Family::delete($id);
+
+        $family = Family::find($id);
+
+        $family->delete();
+        return redirect()->route('manage.family.index');
     }
 }

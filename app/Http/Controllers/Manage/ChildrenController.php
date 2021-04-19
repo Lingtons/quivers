@@ -29,7 +29,7 @@ class ChildrenController extends Controller
     public function create()
     {
         //
-        return view('manage.children.index', compact('children'));
+        return view('manage.children.index');
     }
 
     /**
