@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Manage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Family;
+use App\Models\User;
 use Illuminate\View\View;
 
 class FamilyController extends Controller
@@ -30,9 +31,9 @@ class FamilyController extends Controller
     public function create()
     {
         //
-        $families = Family::all();
+        // $families = Family::all();
 
-        return view('manage.family.index');
+        return view('manage.family.create');
     }
 
     /**
@@ -44,7 +45,25 @@ class FamilyController extends Controller
     public function store(Request $request)
     {
         //
-        Family::create($request->all());
+        // Family::create($request->all());
+        $family = new Family;
+        
+        $family->user_id = $request->user_id;
+        $family->family_name = $request->family_name;
+        $family->phone = $request->phone;
+        $family->phone_alt = $request->phone_alt;
+        $family->email = $request->email;
+        $family->father_name = $request->father_name;
+        $family->mother_name = $request->mother_name;
+        $family->maid_name = $request->maid_name;
+        $family->image_url = $request->image_url;
+        $family->image_url_alt = $request->image_url_alt;
+        $family->preferred_check_code = $request->preferred_check_code;
+        // $family = request()->validate([]);
+
+        // auth()->user()->family()->associate($family);
+
+        $family->save();
 
         return "saved";
     }
@@ -60,7 +79,10 @@ class FamilyController extends Controller
         //
         $family = Family::find($id);
 
+        // dd($family);
+         
         return view('manage.family.single', compact('family'));
+        
     }
 
     /**

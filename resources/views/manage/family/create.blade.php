@@ -29,6 +29,9 @@
             <div class="left mr1 ">
 
                 <h5 class="mt-5 mb-4  text-center">Family Details</h5>
+
+                <input name="user_id" type="hidden" value="1"  ariadescribedby="id" >
+
             <div class="form-group">
                 <label for="familyName">Family Name</label>
                 <input name="family_name" type="text" class="form-control" id="familyName" ariadescribedby="
@@ -80,6 +83,9 @@
             <div class="form-group">
                 <label for="exampleFormControlFile1">Family picture</label>
                 <input name="image_url" type="file" class="form-control-file" id="exampleFormControlFile1">
+              </div>
+            <div class="form-group">
+                <input name="image_url" type="hidden" value="8000/manage/family/create/" class="form-control-file" id="exampleFormControlFile1">
               </div>
 
             </div>
