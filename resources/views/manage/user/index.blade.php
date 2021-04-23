@@ -14,8 +14,7 @@
                     <div class="card-body">
                         <h4 class="card-title">{{$item->name}}</h4>
                         <p class="card-text">{{$item->email}}</p>
-                        <a href="#" class="btn btn-warning">Edit</a>
-                        <a href="#" class="btn btn-success">View</a>
+                        <a href="/manage/family/{{$item->id}}" class="btn btn-success">View</a>
                     </div>
                 </div>
                 
