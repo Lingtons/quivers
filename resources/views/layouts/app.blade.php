@@ -66,6 +66,19 @@
                                     </form>
                                 </div>
                             </li>
+
+                            <li class="nav-item">
+                                    <a class="nav-link" href="/manage/user">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="#">Families</a>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="#">Children</a>
+                            </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="#">Check Numbers</a>
+                            </li>
                         @endguest
                     </ul>
                 </div>
