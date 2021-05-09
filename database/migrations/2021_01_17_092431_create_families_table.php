@@ -17,13 +17,11 @@ class CreateFamiliesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('family_name')->unique();
-            $table->string('phone');
             $table->string('phone_alt')->nullable();
-            $table->string('email');
             $table->string('father_name')->nullable();
             $table->string('mother_name')->nullable();
             $table->string('maid_name')->nullable();
-            $table->text('image_url');
+            $table->text('image_url')->nullable();
             $table->text('image_url_alt')->nullable();
             $table->string('preferred_check_code')->nullable();
             $table->timestamps();

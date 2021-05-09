@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Manage;
 
+use App\Models\Child;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
@@ -15,7 +16,8 @@ class ChildrenController extends Controller
      */
     public function index()
     {
-        return view('manage.children.index');
+        $children = Child::all();
+        return view('manage.children.index', ['children' => $children] );
     }
 
     /**

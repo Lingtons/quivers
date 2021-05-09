@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Manage;
 
+use App\Models\Child;
+use App\Models\Family;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -37,7 +39,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => bcrypt('password')
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -48,7 +57,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $families = Family::Where('user_id', $id)->get();
+        $users = User::all();
+        $user = User::findOrFail($id);
+        $children = Child::all();
+        return view('manage.user.show', ['families' => $families, 'users' => $users, 'user' => $user, 'children'=>$children] );
     }
 
     /**

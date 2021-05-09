@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Manage;
 
+use App\Models\Family;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +16,9 @@ class FamilyController extends Controller
      */
     public function index()
     {
-        return view('manage.family.index');
+        $families = Family::all();
+        $users = User::all();
+        return view('manage.family.index', ['families' => $families, 'users' => $users] );
     }
 
     /**
@@ -35,7 +39,17 @@ class FamilyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Family::create([
+            'user_id' => $request->user_id,
+            'family_name' => $request->family_name,
+            'father_name' => $request->father_name,
+            'mother_name' => $request->mother_name,
+            'maid_name' => $request->maid_name,
+            'phone_alt' => $request->phone_alt,
+            'preferred_check_code' => $request->preferred_check_code
+        ]);
+
+        return redirect()->back();
     }
 
     /**

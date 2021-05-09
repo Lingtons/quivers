@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Manage;
 
+use App\Models\CheckNumber;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,8 @@ class CheckNumberController extends Controller
      */
     public function index()
     {
-        return view('manage.check_number.index');
+        $check_numbers = CheckNumber::all();
+        return view('manage.check_number.index', ['check_numbers' => $check_numbers]);
     }
 
     /**
@@ -35,7 +37,12 @@ class CheckNumberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        CheckNumber::create([
+            'checkin_code' => $request->checkin_code,
+            'quantity' => $request->quantity
+        ]);
+
+        return redirect()->back();
     }
 
     /**
