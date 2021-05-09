@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Manage;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('manage.user.index');
+        $users = User::all();
+        return view('manage.user.index', ['users'=>$users]);
     }
 
     /**

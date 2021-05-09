@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- Icons -->
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -53,8 +56,20 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @if(auth()->user()->hasRole(['superadministrator','administrator']))
+                                    <a href="#"  id="navbarDropdown" class="dropdown-item dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage</a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li class="dropdown">
+                                                <a href="{{route('manage.users.index')}}" class="dropdown-item">Users</a>
+                                                <a href="{{route('manage.families.index')}}" class="dropdown-item">Families</a>
+                                                <a href="{{route('manage.children.index')}}" class="dropdown-item">Children</a>
+                                                <a href="{{route('manage.check_numbers.index')}}" class="dropdown-item">Check Numbers</a>
+                                                <a href="#" class="dropdown-item">Configurations</a>
+                                            </li>
+                                        </ul>
+                                    @endif
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
