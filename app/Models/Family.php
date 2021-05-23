@@ -14,4 +14,12 @@ class Family extends Model
     protected $fillable = [
         'family_name', 'father_name', 'mother_name', 'maid_name','phone_alt', 'image_url','image_url_alt','preferred_check_code','user_id'
     ];
+
+    public function children(){
+        return $this->hasMany(Child::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

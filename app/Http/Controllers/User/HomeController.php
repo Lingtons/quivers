@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Family;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('user.home');
+        $families = Family::all();
+        return view('user.home',['families' => $families]);
     }
 }

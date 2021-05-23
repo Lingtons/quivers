@@ -60,7 +60,8 @@ class FamilyController extends Controller
      */
     public function show($id)
     {
-        //
+        $family = Family::findOrFail($id);
+        return view('manage.family.show', ['family' => $family]);
     }
 
     /**

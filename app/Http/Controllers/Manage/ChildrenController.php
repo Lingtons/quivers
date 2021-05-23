@@ -38,7 +38,8 @@ class ChildrenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Child::create($request->all());
+        return redirect()->back();
     }
 
     /**
